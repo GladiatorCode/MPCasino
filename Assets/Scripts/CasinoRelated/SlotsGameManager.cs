@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SlotsGameManager : MonoBehaviour
 {
+    public TMP_Text coinsText;
     public Reel[] reels;
     private List<Winnings> winningsList;
+
+    public int coins = 1000;
+
 
     void Start()
     {
@@ -14,6 +19,13 @@ public class SlotsGameManager : MonoBehaviour
 
     public void OnSpinButtonClicked()
     {
+        if (coins < 20)
+            return;
+
+        coins -= 20;
+
+        coinsText.text = coins.ToString();
+
         foreach (Reel reel in reels)
         {
             reel.SpinReel();
@@ -40,128 +52,67 @@ public class SlotsGameManager : MonoBehaviour
         // Display result
         if (payout > 0)
         {
+            coins = coins + payout;
             Debug.Log("You win! Payout: " + payout);
         }
         else
         {
             Debug.Log("You lose!");
         }
+
+        coinsText.text = coins.ToString();
     }
 
     private void InitializeWinnings()
     {
         winningsList = new List<Winnings>
-    {
-        new Winnings(new string[] { "7", "7", "7" }, 1000),
-        new Winnings(new string[] { "cherry", "cherry", "cherry" }, 500),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 200),
-        new Winnings(new string[] { "triplebar", "triplebar", "triplebar" }, 100),
-        new Winnings(new string[] { "7", "7", "cherry" }, 50),
-        new Winnings(new string[] { "7", "7", "bell" }, 20),
-        new Winnings(new string[] { "7", "7", "triplebar" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "bell" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "bell", "bell", "triplebar" }, 5),
-        new Winnings(new string[] { "7", "cherry", "bell" }, 3),
-        new Winnings(new string[] { "7", "cherry", "triplebar" }, 2),
-        new Winnings(new string[] { "7", "bell", "triplebar" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "bell" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "triplebar" }, 1),
-        new Winnings(new string[] { "cherry", "triplebar", "triplebar" }, 1),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 3),
-        new Winnings(new string[] { "bell", "triplebar", "triplebar" }, 3),
-        new Winnings(new string[] { "bell", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "7", "7", "7" }, 1000),
-        new Winnings(new string[] { "cherry", "cherry", "cherry" }, 500),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 200),
-        new Winnings(new string[] { "triplebar", "triplebar", "triplebar" }, 100),
-        new Winnings(new string[] { "7", "7", "cherry" }, 50),
-        new Winnings(new string[] { "7", "7", "bell" }, 20),
-        new Winnings(new string[] { "7", "7", "triplebar" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "bell" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "bell", "bell", "triplebar" }, 5),
-        new Winnings(new string[] { "7", "cherry", "bell" }, 3),
-        new Winnings(new string[] { "7", "cherry", "triplebar" }, 2),
-        new Winnings(new string[] { "7", "bell", "triplebar" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "bell" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "triplebar" }, 1),
-        new Winnings(new string[] { "cherry", "triplebar", "triplebar" }, 1),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 3),
-        new Winnings(new string[] { "bell", "triplebar", "triplebar" }, 3),
-        new Winnings(new string[] { "bell", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "cherry", "cherry", "7" }, 5),
-        new Winnings(new string[] { "bell", "7", "bell" }, 5),
-        new Winnings(new string[] { "bell", "7", "cherry" }, 5),
-        new Winnings(new string[] { "cherry", "7", "triplebar" }, 5),
-        new Winnings(new string[] { "cherry", "7", "7" }, 5),
-        new Winnings(new string[] { "bell", "bell", "7" }, 5),
-        new Winnings(new string[] { "bell", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "7", "bell", "7" }, 5),
-        new Winnings(new string[] { "7", "cherry", "7" }, 5),
-        new Winnings(new string[] { "7", "7", "bell" }, 5),
-        new Winnings(new string[] { "7", "7", "cherry" }, 5),
-        new Winnings(new string[] { "7", "cherry", "bell" }, 5),
-        new Winnings(new string[] { "7", "cherry", "7" }, 5),
-        new Winnings(new string[] { "7", "bell", "bell" }, 5),
-        new Winnings(new string[] { "7", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "7", "triplebar", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "7" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "7" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "triplebar" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "7", "7", "7" }, 1000),
-        new Winnings(new string[] { "cherry", "cherry", "cherry" }, 500),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 200),
-        new Winnings(new string[] { "triplebar", "triplebar", "triplebar" }, 100),
-        new Winnings(new string[] { "7", "7", "cherry" }, 50),
-        new Winnings(new string[] { "7", "7", "bell" }, 20),
-        new Winnings(new string[] { "7", "7", "triplebar" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "bell" }, 10),
-        new Winnings(new string[] { "cherry", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "bell", "bell", "triplebar" }, 5),
-        new Winnings(new string[] { "7", "cherry", "bell" }, 3),
-        new Winnings(new string[] { "7", "cherry", "triplebar" }, 2),
-        new Winnings(new string[] { "7", "bell", "triplebar" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "bell" }, 2),
-        new Winnings(new string[] { "cherry", "bell", "triplebar" }, 1),
-        new Winnings(new string[] { "cherry", "triplebar", "triplebar" }, 1),
-        new Winnings(new string[] { "bell", "bell", "bell" }, 3),
-        new Winnings(new string[] { "bell", "triplebar", "triplebar" }, 3),
-        new Winnings(new string[] { "bell", "cherry", "triplebar" }, 5),
-        new Winnings(new string[] { "cherry", "cherry", "7" }, 5),
-        new Winnings(new string[] { "bell", "7", "bell" }, 5),
-        new Winnings(new string[] { "bell", "7", "cherry" }, 5),
-        new Winnings(new string[] { "cherry", "7", "triplebar" }, 5),
-        new Winnings(new string[] { "cherry", "7", "7" }, 5),
-        new Winnings(new string[] { "bell", "bell", "7" }, 5),
-        new Winnings(new string[] { "bell", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "7", "bell", "7" }, 5),
-        new Winnings(new string[] { "7", "cherry", "7" }, 5),
-        new Winnings(new string[] { "7", "7", "bell" }, 5),
-        new Winnings(new string[] { "7", "7", "cherry" }, 5),
-        new Winnings(new string[] { "7", "cherry", "bell" }, 5),
-        new Winnings(new string[] { "7", "cherry", "7" }, 5),
-        new Winnings(new string[] { "7", "bell", "bell" }, 5),
-        new Winnings(new string[] { "7", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "7", "triplebar", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "7" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "7" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "7", "triplebar" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "cherry", "cherry" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "bell" }, 5),
-        new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
-    };
+        {
+            new Winnings(new string[] { "7", "7", "7" }, 1000),
+            new Winnings(new string[] { "cherry", "cherry", "cherry" }, 500),
+            new Winnings(new string[] { "bell", "bell", "bell" }, 200),
+            new Winnings(new string[] { "triplebar", "triplebar", "triplebar" }, 100),
+            new Winnings(new string[] { "7", "7", "cherry" }, 50),
+            new Winnings(new string[] { "7", "7", "bell" }, 20),
+            new Winnings(new string[] { "7", "7", "triplebar" }, 10),
+            new Winnings(new string[] { "cherry", "cherry", "bell" }, 10),
+            new Winnings(new string[] { "cherry", "cherry", "triplebar" }, 5),
+            new Winnings(new string[] { "bell", "bell", "triplebar" }, 5),
+            new Winnings(new string[] { "7", "cherry", "bell" }, 3),
+            new Winnings(new string[] { "7", "cherry", "triplebar" }, 2),
+            new Winnings(new string[] { "7", "bell", "triplebar" }, 2),
+            new Winnings(new string[] { "cherry", "bell", "bell" }, 2),
+            new Winnings(new string[] { "cherry", "bell", "triplebar" }, 1),
+            new Winnings(new string[] { "cherry", "triplebar", "triplebar" }, 1),
+            new Winnings(new string[] { "bell", "bell", "bell" }, 3),
+            new Winnings(new string[] { "bell", "triplebar", "triplebar" }, 3),
+            new Winnings(new string[] { "bell", "cherry", "triplebar" }, 5),
+            new Winnings(new string[] { "cherry", "cherry", "7" }, 5),
+            new Winnings(new string[] { "bell", "7", "bell" }, 5),
+            new Winnings(new string[] { "bell", "7", "cherry" }, 5),
+            new Winnings(new string[] { "cherry", "7", "triplebar" }, 5),
+            new Winnings(new string[] { "cherry", "7", "7" }, 5),
+            new Winnings(new string[] { "bell", "bell", "7" }, 5),
+            new Winnings(new string[] { "bell", "bell", "cherry" }, 5),
+            new Winnings(new string[] { "7", "bell", "7" }, 5),
+            new Winnings(new string[] { "7", "cherry", "7" }, 5),
+            new Winnings(new string[] { "7", "7", "bell" }, 5),
+            new Winnings(new string[] { "7", "7", "cherry" }, 5),
+            new Winnings(new string[] { "7", "cherry", "bell" }, 5),
+            new Winnings(new string[] { "7", "cherry", "7" }, 5),
+            new Winnings(new string[] { "7", "bell", "bell" }, 5),
+            new Winnings(new string[] { "7", "bell", "cherry" }, 5),
+            new Winnings(new string[] { "7", "triplebar", "bell" }, 5),
+            new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
+            new Winnings(new string[] { "triplebar", "cherry", "7" }, 5),
+            new Winnings(new string[] { "triplebar", "7", "bell" }, 5),
+            new Winnings(new string[] { "triplebar", "7", "7" }, 5),
+            new Winnings(new string[] { "triplebar", "7", "cherry" }, 5),
+            new Winnings(new string[] { "triplebar", "7", "triplebar" }, 5),
+            new Winnings(new string[] { "triplebar", "cherry", "bell" }, 5),
+            new Winnings(new string[] { "triplebar", "cherry", "cherry" }, 5),
+            new Winnings(new string[] { "triplebar", "bell", "bell" }, 5),
+            new Winnings(new string[] { "triplebar", "bell", "cherry" }, 5),
+        };
     }
 
     private int GetPayout(string[] finalSymbols)
@@ -195,17 +146,8 @@ public class SlotsGameManager : MonoBehaviour
         return true;
     }
 
-
-public class Winnings
-{
-    public string[] combination;
-    public int payout;
-
-    public Winnings(string[] combination, int payout)
-    {
-        this.combination = combination;
-        this.payout = payout;
-    }
 }
-}
+
+
+
 

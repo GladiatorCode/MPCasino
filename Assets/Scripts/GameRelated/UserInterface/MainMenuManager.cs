@@ -10,15 +10,13 @@ public class MainMenuManager : MonoBehaviour
     public TMP_InputField nameInputField;
     public string GameScene;
 
-    // This method will be called when the button is clicked
     public void PlayButton()
     {
-        // Get the name from the input field
         string playerName = nameInputField.text;
 
         if (string.IsNullOrEmpty(playerName))
         {
-            // Do nothing if the name field is empty
+            
             return;
         }
         // Save the name using PlayerPrefs

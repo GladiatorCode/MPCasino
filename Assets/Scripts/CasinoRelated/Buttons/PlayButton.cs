@@ -33,7 +33,7 @@ public class PlayButton : MonoBehaviour
             rawImage.texture = textures[currentTextureIndex];
             yield return new WaitForSeconds(.3f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.8f);
         currentlyPlaying = false;
     }
 }

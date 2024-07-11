@@ -1,4 +1,4 @@
-public struct Winnings
+public class Winnings
 {
     public string[] combination;
     public int payout;
