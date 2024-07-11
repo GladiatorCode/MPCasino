@@ -6,6 +6,8 @@ public class SlotsUIManager : MonoBehaviour
 {
     public GameObject slotsUserInterface;
     private static SlotsUIManager _instance;
+    public PlayButton playButton;
+
 
     public static SlotsUIManager Instance
     {
@@ -29,6 +31,12 @@ public class SlotsUIManager : MonoBehaviour
         }
     }
 
+
+    public void ResetGame()
+    {
+        playButton.currentlyPlaying = false;
+    }
+
     public void TurnUIOn()
     {
         slotsUserInterface.SetActive(true);
@@ -38,5 +46,7 @@ public class SlotsUIManager : MonoBehaviour
     {
         slotsUserInterface.SetActive(false);
     }
+
+
 
 }
