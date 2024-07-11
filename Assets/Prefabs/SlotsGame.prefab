@@ -178,6 +178,9 @@ GameObject:
   - component: {fileID: 2528414885998305513}
   - component: {fileID: 2539171591118248393}
   - component: {fileID: 2560873842748674621}
+  - component: {fileID: 448026060325428419}
+  - component: {fileID: 565961785754750263}
+  - component: {fileID: 4838696237407366231}
   m_Layer: 0
   m_Name: SlotsGame
   m_TagString: Untagged
@@ -267,6 +270,52 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43796544262840406, guid: 89985ab00659e7141b00b29d22cf979b, type: 2}
+--- !u!114 &448026060325428419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552962561072655947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ff1cde8bba66c4a9a0dc8b4d14545e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &565961785754750263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552962561072655947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
+--- !u!114 &4838696237407366231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552962561072655947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 4271633791
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 565961785754750263}
 --- !u!1 &5566337054495056959
 GameObject:
   m_ObjectHideFlags: 0
