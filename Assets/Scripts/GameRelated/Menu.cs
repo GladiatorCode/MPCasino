@@ -106,7 +106,7 @@ namespace Example
 			{
 				if (GUILayout.Button($"[Enter] Cursor", _defaultStyle) == true)
 				{
-					ToggleCursor();
+					//ToggleCursor();
 				}
 			}
 
